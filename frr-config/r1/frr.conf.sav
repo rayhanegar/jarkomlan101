@@ -27,3 +27,7 @@ router ospf
  network 192.168.1.0/24 area 0
 exit
 !
+router ospf6
+ ospf6 router-id 10.151.0.1
+exit
+!
