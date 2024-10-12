@@ -31,6 +31,9 @@ class LinuxRouter( Node ):
 		# self.cmd('/usr/lib/frr/ospf6d -A ::1 -f /etc/frr/frr.conf -d')
 		# endregion
 
+		self.cmd('/usr/lib/frr/frr-reload.py  --reload /etc/frr/frr.conf')
+
+
 	def terminate( self ):
 		self.cmd( 'killall zebra staticd ospfd ospf6d bgpd pathd pimd pim6d ldpd isisd nhrpd vrrpd fabricd' )
 		super( LinuxRouter, self ).terminate()
