@@ -30,20 +30,14 @@ class LinuxRouter( Node ):
 		# self.cmd('/usr/lib/frr/isisd -A 127.0.0.1 -f /etc/frr/frr.conf -d')
 		# self.cmd('/usr/lib/frr/ospf6d -A ::1 -f /etc/frr/frr.conf -d')
 		# endregion
-
 		self.cmd('/usr/lib/frr/frr-reload.py  --reload /etc/frr/frr.conf')
 
 
 	def terminate( self ):
 		self.cmd( 'killall zebra staticd ospfd ospf6d bgpd pathd pimd pim6d ldpd isisd nhrpd vrrpd fabricd' )
 		super( LinuxRouter, self ).terminate()
-	
-	def start (self):
-		return
-	
 
 class OSPFLab(Topo):
-
 	def generate_config(self, router_name, path):
 		""" Generate an empty config for each router.\n
 			path: the path of router configs directory
@@ -89,7 +83,21 @@ class OSPFLab(Topo):
 		parser.add_argument("-v", "--verbose", 
 											help="Prints detailed logs during network creation and stop",
 											action="store_true")
+		parser.add_argument("-c", "--config",
+											help="Specify the directory to use for saving the configurations \
+												(default: ./config_ospf_lab) \n\
+												Example: \"sudo python3 ospf-lab.py -c /tmp/config_ospf_lab\"",
+											dest="config_dir",
+											default="config_ospf_lab")
 		flags = parser.parse_args()
+		if flags.config_dir == "":
+			raise argparse.ArgumentTypeError("directory cannot be an empty string. Use -h to see examples")
+			# throw error here
+		elif flags.config_dir.isspace():
+			raise argparse.ArgumentTypeError("directory cannot be only whitespace. Use -h to see examples")
+
+		# print(flags)
+
 		return flags
 	
 	def build(self, *args, **kwargs):
@@ -98,8 +106,10 @@ class OSPFLab(Topo):
 			setLogLevel( 'info' )
 		
 		# directory to keep the configurations
-		config_path = "/tmp/config_ospf_lab/%(name)s"
-
+		# config_path = "/tmp/config_ospf_lab/%(name)s"
+		config_path = flags.config_dir+"/%(name)s"
+		#print(config_path)
+		
 		# private directory that will useed by the routers by bind mounting
 		privateDirs = [ ( '/var/log' ),
 						( '/etc/frr', config_path),
