@@ -37,6 +37,7 @@ exit
 !
 router ospf
  ospf router-id 10.200.22.1
+ default-information originate always
 exit
 !
 route-map ACCEPT_ALL permit 10
