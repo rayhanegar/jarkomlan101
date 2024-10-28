@@ -25,10 +25,15 @@ interface lo
 exit
 !
 router bgp 200
+ no bgp ebgp-requires-policy
  neighbor 10.20.30.2 remote-as 300
  !
  address-family ipv4 unicast
   network 10.200.0.0/16
+  network 10.200.1.0/24
+  network 10.200.2.0/24
+  network 10.200.3.0/24
+  network 10.200.4.0/24
   network 172.17.1.0/24
   neighbor 10.20.30.2 route-map ACCEPT_ALL in
   neighbor 10.20.30.2 route-map ACCEPT_ALL out
