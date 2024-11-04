@@ -20,6 +20,7 @@ interface lo
 exit
 !
 router bgp 100
+ no bgp ebgp-requires-policy
  neighbor 10.100.11.1 remote-as 100
  neighbor 10.100.11.1 update-source lo
  neighbor 10.100.12.1 remote-as 100
@@ -38,5 +39,8 @@ exit
 !
 router ospf
  ospf router-id 10.100.13.1
+exit
+!
+route-map ACCEPT_ALL permit 10
 exit
 !

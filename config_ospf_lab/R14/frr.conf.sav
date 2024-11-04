@@ -27,6 +27,7 @@ exit
 !
 router bgp 100
  bgp router-id 10.100.14.1
+ no bgp ebgp-requires-policy
  neighbor 10.10.20.2 remote-as 200
  neighbor 10.100.11.1 remote-as 100
  neighbor 10.100.11.1 update-source lo
@@ -49,5 +50,8 @@ exit
 !
 router ospf
  ospf router-id 10.100.14.1
+exit
+!
+route-map ACCEPT_ALL permit 10
 exit
 !
