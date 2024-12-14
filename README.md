@@ -1,4 +1,5 @@
 # Deskripsi Project
+
 Selamat datang di Proyek Akhir Jaringan Komputer Lanjutan. Anggota kelompok dari proyek ini terdiri dari:
 1. Rayhan Egar Sadtya Nugraha (225150201111014)
 2. I Gusti Ngurah Ryo Adi Tarta (225150200111011)
@@ -10,6 +11,8 @@ Berikut adalah langkah-langkah yang diperlukan untuk dapat menjalankan program.
 
 Catatan: Sebelum melanjutkan demonstrasi, pastikan Mininet dapat dijalankan. Instalasi Mininet dapat dilihat pada referensi berikut:
 https://github.com/mininet/mininet
+
+Untuk melihat contoh konfigurasi yang Kami lakukan, silakan menuju Wiki Jarkomlan101 melalui tautan https://github.com/rayhanegar/jarkomlan101/wiki
 
 ### Melakukan Clone Repository
 Untuk menyimpan konfigurasi di perangkat, diperlukan clone repository github. Berikut adalah langkah-langkah untuk melakukan clone repository:
